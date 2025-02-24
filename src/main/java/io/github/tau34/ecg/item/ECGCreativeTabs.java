@@ -20,6 +20,7 @@ public class ECGCreativeTabs {
                 for (BlockRegistry block : ECGBlocks.CPD_COBBLE) {
                     output.accept(block.getItem());
                 }
+                output.accept(ECGBlocks.SAMPLE_BLOCK.getItem());
             }).build());
 
     public static void register(IEventBus modEventBus) {

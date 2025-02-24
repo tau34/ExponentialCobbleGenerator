@@ -1,4 +1,4 @@
 {
   "item.cpd_cobble": "Compressed Cobblestone %s",
-  "tooltip.cpd": "9%sx Compressed"
+  "tooltip.cpd": "%2$s(=9%1$s)x Compressed"
 }

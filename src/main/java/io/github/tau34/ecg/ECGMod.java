@@ -2,9 +2,14 @@ package io.github.tau34.ecg;
 
 import com.mojang.logging.LogUtils;
 import io.github.tau34.ecg.block.ECGBlocks;
+import io.github.tau34.ecg.block.entity.ECGBlockEntities;
+import io.github.tau34.ecg.gui.CobbleGeneratorScreen;
+import io.github.tau34.ecg.gui.ECGMenuTypes;
+import io.github.tau34.ecg.gui.SampleScreen;
 import io.github.tau34.ecg.item.ECGCreativeTabs;
 import io.github.tau34.ecg.item.ECGItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,6 +43,8 @@ public class ECGMod
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
+        ECGBlockEntities.register(modEventBus);
+        ECGMenuTypes.register(modEventBus);
         ECGItems.register(modEventBus);
         ECGBlocks.register(modEventBus);
         ECGCreativeTabs.register(modEventBus);
@@ -83,6 +90,8 @@ public class ECGMod
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            event.enqueueWork(() -> MenuScreens.register(ECGMenuTypes.SAMPLE_MENU.get(), SampleScreen::new));
+            event.enqueueWork(() -> MenuScreens.register(ECGMenuTypes.BASIC_COBBLE_GENERATOR.get(), CobbleGeneratorScreen::new));
         }
     }
 }
